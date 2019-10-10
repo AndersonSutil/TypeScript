@@ -4,7 +4,8 @@
         "outDir": "app/js",     //<--- Aonde ira jogar os códigos convertido para Js
         "noEmitOnError": true, //<--- Não compila se tiver erro 
         "noImplicitAny": true,  //<--- Desativa o tipo Any explicitamente
-        "removeComments": true   //<--- Desativa os comentarios    
+        "removeComments": true,   //<--- Desativa os comentarios    
+        "module": "system"
     },
     "include": [
         "app/ts/**/*"  //<--- Raiz aonde irá encontrar os ts 

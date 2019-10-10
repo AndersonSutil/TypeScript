@@ -1,4 +1,5 @@
-class Negociacao {  //<--- classe que recebe os valores da view e as trata e valida 
+
+export class Negociacao {  //<--- classe que recebe os valores da view e as trata e valida 
     
     constructor(private _data: Date, private _quantidade: number, private _valor: number) {}
 

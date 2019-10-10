@@ -1,10 +1,9 @@
-namespace Views{ //<--- Escopo para visualizacao das classes <nome>.<classe>
-
-    import view = Views.View; // <--- Apelidando o caminho 
-
+import {View} from '../views/View';  //<<--- imports para utilizar o carregador de modulos
+import {Negociacoes} from '../models/Negociacoes'
 
 
-    export class NegociacoesView extends view <Negociacoes> { //<--classe filha passando o tipo <Negociacoes>
+    
+    export class NegociacoesView extends View <Negociacoes> { //<--classe filha passando o tipo <Negociacoes>
 
         update(model: Negociacoes) {
     
@@ -44,4 +43,3 @@ namespace Views{ //<--- Escopo para visualizacao das classes <nome>.<classe>
             `
         }
     }
-}

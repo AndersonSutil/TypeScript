@@ -1,12 +1,20 @@
-var Views;
-(function (Views) {
-    var view = Views.View;
-    class NegociacoesView extends view {
-        update(model) {
-            this._elemento.html(this.template(model));
-        }
-        template(model) {
-            return `
+System.register(["../views/View"], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var View_1, NegociacoesView;
+    return {
+        setters: [
+            function (View_1_1) {
+                View_1 = View_1_1;
+            }
+        ],
+        execute: function () {
+            NegociacoesView = class NegociacoesView extends View_1.View {
+                update(model) {
+                    this._elemento.html(this.template(model));
+                }
+                template(model) {
+                    return `
             <table class="table table-hover table-bordered">
                 <thead>                                             
                     <tr>
@@ -33,7 +41,9 @@ var Views;
                 </tfoot>
             </table>               
             `;
+                }
+            };
+            exports_1("NegociacoesView", NegociacoesView);
         }
-    }
-    Views.NegociacoesView = NegociacoesView;
-})(Views || (Views = {}));
+    };
+});

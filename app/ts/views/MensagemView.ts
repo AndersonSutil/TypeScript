@@ -1,7 +1,5 @@
-namespace Views{
-
-    import view = Views.View;
-    export class MensagemView extends view<string> {  //<--- classe filha // <string> type que e passado para a pai <T>
+import {View} from '../views/View';
+    export class MensagemView extends View<string> {  //<--- classe filha // <string> type que e passado para a pai <T>
 
         update(model:string){
         this._elemento.html( this.template(model));
@@ -10,4 +8,3 @@ namespace Views{
             return `<p class="alert alert-info">${model}</p>`;
         }
     }
-}

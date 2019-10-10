@@ -5,6 +5,7 @@ class NegociacoesView extends View <Negociacoes> { //<--classe filha passando o 
         this._elemento.html(this.template(model));
     }
 
+    
     template(model: Negociacoes): string {
 //--->String que é convertida para gerar o html, gerando as tabelas a cada objeto criado 
         return `

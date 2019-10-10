@@ -1,11 +1,12 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "outDir": "app/js",
-        "noEmitOnError": true, 
-        "noImplicitAny": true        
+        "target": "es6",        //<--- especificação dos EcmasScript
+        "outDir": "app/js",     //<--- Aonde ira jogar os códigos convertido para Js
+        "noEmitOnError": true, //<--- Não compila se tiver erro 
+        "noImplicitAny": true,  //<--- Desativa o tipo Any explicitamente
+        "removeComments": true   //<--- Desativa os comentarios    
     },
     "include": [
-        "app/ts/**/*"
+        "app/ts/**/*"  //<--- Raiz aonde irá encontrar os ts 
     ]
 }

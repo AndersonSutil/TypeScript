@@ -1,19 +1,15 @@
-class NegociacoesView {
+class NegociacoesView extends View <Negociacoes> { //<--classe filha passando o tipo <Negociacoes>
 
-    private _elemento: Element;
-    constructor(seletor:string){
-        this._elemento =document.querySelector(seletor)
+    update(model: Negociacoes) {
+
+        this._elemento.html(this.template(model));
     }
 
-    update():void{
-        this._elemento.innerHTML = this.template();
-    }
-
-template(): string {
-
+    template(model: Negociacoes): string {
+//--->String que é convertida para gerar o html, gerando as tabelas a cada objeto criado 
         return `
         <table class="table table-hover table-bordered">
-            <thead>
+            <thead>                                             
                 <tr>
                     <th>DATA</th>
                     <th>QUANTIDADE</th>
@@ -23,6 +19,16 @@ template(): string {
             </thead>
 
             <tbody>
+
+            ${model.paraArray().map(negociacao => 
+                `
+                    <tr>
+                        <td>${negociacao.data.getDate()}/${negociacao.data.getMonth()+1}/${negociacao.data.getFullYear()}</td>
+                        <td>${negociacao.quantidade}</td>
+                        <td>${negociacao.valor}</td>
+                        <td>${negociacao.volume}</td>
+                    </tr>                        
+                `).join('')}            
             </tbody>
 
             <tfoot>

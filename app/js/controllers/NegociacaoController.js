@@ -13,13 +13,7 @@ class NegociacaoController {
         const negociacao = new Negociacao(new Date(this._inputData.val().replace(/-/g, ',')), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
         this._negociacoes.adiciona(negociacao);
         this._negociacoesView.update(this._negociacoes);
-        console.log(negociacao.data); //<--- testando as saida no console do Browser
+        console.log(negociacao.data);
         this._mensagemView.update('Deu certo carai');
-        //this._negociacoes.paraArray().forEach(negociacao =>{
-        //  console.log(negociacao.data);                     //< ----  array com objetos para teste
-        //   console.log(negociacao.quantidade);
-        //  console.log(negociacao.valor);
-        //    console.log(negociacao.volume);
-        //  })
     }
 }

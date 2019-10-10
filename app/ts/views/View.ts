@@ -9,6 +9,7 @@ class View <T> {
         this._elemento.innerHTML =  this.template(model);
     }
     template(model:T):string{
-        return `<p class="alert alert-info">${model}</p>`;
+       throw new Error ('Você deve implementar o método template:');
+       
     }
 }

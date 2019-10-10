@@ -1,4 +1,4 @@
-class NegociacaoController {
+class NegociacaoController { //<--- Camada de Negócio 
 
     private _inputData: JQuery;
     private _inputQuantidade: JQuery;

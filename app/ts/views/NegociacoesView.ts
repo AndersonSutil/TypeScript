@@ -1,4 +1,4 @@
-class NegociacoesView extends View <Negociacoes> {
+class NegociacoesView extends View <Negociacoes> { //<--classe filha passando o tipo <Negociacoes>
 
     update(model: Negociacoes) {
 
@@ -6,10 +6,10 @@ class NegociacoesView extends View <Negociacoes> {
     }
 
     template(model: Negociacoes): string {
-
+//--->String que é convertida para gerar o html, gerando as tabelas a cada objeto criado 
         return `
         <table class="table table-hover table-bordered">
-            <thead>
+            <thead>                                             
                 <tr>
                     <th>DATA</th>
                     <th>QUANTIDADE</th>

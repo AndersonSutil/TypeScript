@@ -1,4 +1,4 @@
-abstract class View<T> {
+abstract class View<T> { //<---classe pai //<T> tipo esperado  
     
     protected _elemento: JQuery;
 

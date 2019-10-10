@@ -1,4 +1,10 @@
-class NegociacaoController { //<--- Camada de Negócio 
+import { MensagemView } from '../views/MensagemView';   //<--- Imports sintaxe de módulos do ES2015 considera 
+import {NegociacoesView } from '../views/NegociacoesView';//             através das instruções import e export
+import {Negociacao} from '../models/Negociacao';
+import {Negociacoes} from '../models/Negociacoes';
+
+
+export class NegociacaoController { //<--- Camada de Negócio 
 
     private _inputData: JQuery;
     private _inputQuantidade: JQuery;

@@ -1,40 +1,45 @@
-class NegociacoesView extends View <Negociacoes> { //<--classe filha passando o tipo <Negociacoes>
+import {View} from '../views/View';  //<<--- imports para utilizar o carregador de modulos
+import {Negociacoes} from '../models/Negociacoes'
 
-    update(model: Negociacoes) {
-
-        this._elemento.html(this.template(model));
-    }
 
     
-    template(model: Negociacoes): string {
-//--->String que é convertida para gerar o html, gerando as tabelas a cada objeto criado 
-        return `
-        <table class="table table-hover table-bordered">
-            <thead>                                             
-                <tr>
-                    <th>DATA</th>
-                    <th>QUANTIDADE</th>
-                    <th>VALOR</th>
-                    <th>VOLUME</th>
-                </tr>
-            </thead>
+    export class NegociacoesView extends View <Negociacoes> { //<--classe filha passando o tipo <Negociacoes>
 
-            <tbody>
-
-            ${model.paraArray().map(negociacao => 
-                `
+        update(model: Negociacoes) {
+    
+            this._elemento.html(this.template(model));
+        }
+    
+        
+        template(model: Negociacoes): string {
+    //--->String que é convertida para gerar o html, gerando as tabelas a cada objeto criado 
+            return `
+            <table class="table table-hover table-bordered">
+                <thead>                                             
                     <tr>
-                        <td>${negociacao.data.getDate()}/${negociacao.data.getMonth()+1}/${negociacao.data.getFullYear()}</td>
-                        <td>${negociacao.quantidade}</td>
-                        <td>${negociacao.valor}</td>
-                        <td>${negociacao.volume}</td>
-                    </tr>                        
-                `).join('')}            
-            </tbody>
-
-            <tfoot>
-            </tfoot>
-        </table>               
-        `
+                        <th>DATA</th>
+                        <th>QUANTIDADE</th>
+                        <th>VALOR</th>
+                        <th>VOLUME</th>
+                    </tr>
+                </thead>
+    
+                <tbody>
+    
+                ${model.paraArray().map(negociacao => 
+                    `
+                        <tr>
+                            <td>${negociacao.data.getDate()}/${negociacao.data.getMonth()+1}/${negociacao.data.getFullYear()}</td>
+                            <td>${negociacao.quantidade}</td>
+                            <td>${negociacao.valor}</td>
+                            <td>${negociacao.volume}</td>
+                        </tr>                        
+                    `).join('')}            
+                </tbody>
+    
+                <tfoot>
+                </tfoot>
+            </table>               
+            `
+        }
     }
-}

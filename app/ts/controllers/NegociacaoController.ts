@@ -1,6 +1,6 @@
 import { NegociacoesView, MensagemView } from '../views/index';  //<--- Imports sintaxe de módulos do ES2015 considera 
 import { Negociacao, Negociacoes, NegociacaoParcial } from '../models/index';  //             através das instruções import e export
-import { domInject } from '../helpers/decorators/index'; 
+import { domInject , throttle} from '../helpers/decorators/index'; 
 
 
 
@@ -22,10 +22,10 @@ export class NegociacaoController { //<--- Camada de Negócio
     constructor() {
         this._negociacoesView.update(this._negociacoes);       //<---Retiras os dados do contrutor, na utilização do domInject
     }
-
+    @throttle()
     adiciona(event: Event) {
 
-        event.preventDefault();
+       
         
         let data = new Date(this._inputData.val().replace(/-/g, ','))
         if(!this._ehDiaUtil(data)) {
@@ -57,6 +57,7 @@ export class NegociacaoController { //<--- Camada de Negócio
 
         return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
     }
+    @throttle()
     impotaDados(){
         function isOk(res:Response){      //<--- Função que trata os erros de requisição
             if(res.ok){

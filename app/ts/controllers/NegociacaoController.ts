@@ -56,7 +56,27 @@ export class NegociacaoController { //<--- Camada de Negócio
 
         return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
     }
-}
+    impotaDados(){
+        function isOk(res:Response){      //<--- Função que trata os erros de requisição
+            if(res.ok){
+                return res;
+            }else{
+                throw new Error(res.statusText);  //<--- Mensagem de erro tratada 
+            }
+        }
+            fetch('http://localhost:8080/dados')                //<---Retorna os Dados se tudo Ok
+            .then(res => isOk (res))
+            .then(res => res.json())
+            .then((dados:any [] ) => {
+                dados.map(dado => new Negociacao(new Date(), dado.vezes , dado.montante)) //<--- Manda dados para uma nova negociação 
+                    .forEach(Negociacao => this._negociacoes.adiciona(Negociacao))  //<--- Para cada negociação adiciona nova negociação na View update
+                    this._negociacoesView.update(this._negociacoes); 
+            })
+            .catch(err => console.log(err));
+        }
+    }
+
+
 enum DiaDaSemana {
 
     Domingo, 

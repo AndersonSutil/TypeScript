@@ -1,4 +1,4 @@
-System.register(["../views/View"], function (exports_1, context_1) {
+System.register(["./View"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var View_1, MensagemView;

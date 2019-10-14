@@ -1,4 +1,4 @@
-System.register(["../views/View"], function (exports_1, context_1) {
+System.register(["./View"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var View_1, NegociacoesView;
@@ -10,9 +10,6 @@ System.register(["../views/View"], function (exports_1, context_1) {
         ],
         execute: function () {
             NegociacoesView = class NegociacoesView extends View_1.View {
-                update(model) {
-                    this._elemento.html(this.template(model));
-                }
                 template(model) {
                     return `
             <table class="table table-hover table-bordered">

@@ -1,32 +1,40 @@
-import { MensagemView } from '../views/MensagemView';   //<--- Imports sintaxe de módulos do ES2015 considera 
-import {NegociacoesView } from '../views/NegociacoesView';//             através das instruções import e export
-import {Negociacao} from '../models/Negociacao';
-import {Negociacoes} from '../models/Negociacoes';
+import { NegociacoesView, MensagemView } from '../views/index';  //<--- Imports sintaxe de módulos do ES2015 considera 
+import { Negociacao, Negociacoes } from '../models/index';  //             através das instruções import e export
+import { domInject } from '../helpers/decorators/index';                            
 
 
 export class NegociacaoController { //<--- Camada de Negócio 
 
+    @domInject('#data')
     private _inputData: JQuery;
-    private _inputQuantidade: JQuery;
+
+    @domInject('#quantidade')
+    private _inputQuantidade: JQuery;               //<---Utilizando os Dados do domInject 
+    
+    @domInject('#valor')
     private _inputValor: JQuery;
+    
     private _negociacoes = new Negociacoes();
     private _negociacoesView = new NegociacoesView('#negociacoesView');
     private _mensagemView = new MensagemView('#mensagemView');
-
+    
     constructor() {
-        this._inputData = $('#data');
-        this._inputQuantidade = $('#quantidade');
-        this._inputValor = $('#valor');
-        this._negociacoesView.update(this._negociacoes);
-     
+        this._negociacoesView.update(this._negociacoes);       //<---Retiras os dados do contrutor, na utilização do domInject
     }
 
     adiciona(event: Event) {
 
         event.preventDefault();
+        
+        let data = new Date(this._inputData.val().replace(/-/g, ','))
+        if(!this._ehDiaUtil(data)) {
+
+            this._mensagemView.update('Somente negociações em dias úteis, por favor!');
+            return 
+        }
 
         const negociacao = new Negociacao(
-            new Date(this._inputData.val().replace(/-/g, ',')), 
+            data,
             parseInt(this._inputQuantidade.val()),
             parseFloat(this._inputValor.val())
         );
@@ -44,4 +52,18 @@ export class NegociacaoController { //<--- Camada de Negócio
                   //    console.log(negociacao.volume);
              //  })
     }
+    private _ehDiaUtil(data: Date) {
+
+        return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
+    }
+}
+enum DiaDaSemana {
+
+    Domingo, 
+    Segunda, 
+    Terca, 
+    Quarta, 
+    Quinta, 
+    Sexta, 
+    Sabado
 }

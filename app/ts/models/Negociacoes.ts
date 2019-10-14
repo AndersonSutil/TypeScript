@@ -8,7 +8,7 @@ export class Negociacoes { //<--- Camadas de escrita e leitura de dados  e valid
 
     }
     paraArray(): Negociacao[]{
-        return [].concat(this._negociacoes);
+        return ([] as Negociacao[]).concat(this._negociacoes);  //<--- Com o Uso do StrictNullCheck Tem declarar o tipo do Array[]
     }
 
 }

@@ -5,7 +5,10 @@
         "noEmitOnError": true, //<--- Não compila se tiver erro 
         "noImplicitAny": true,  //<--- Desativa o tipo Any explicitamente
         "removeComments": true,   //<--- Desativa os comentarios    
-        "module": "system"
+        "module": "system",
+        "strictNullChecks": true, //<--- Configuração para proteger do tipos Underfielde, Null, Implicitos
+        "experimentalDecorators": true //<---Habilita O Decoraitor experimental
+
     },
     "include": [
         "app/ts/**/*"  //<--- Raiz aonde irá encontrar os ts 

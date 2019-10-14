@@ -1,15 +1,7 @@
-import {View} from '../views/View';  //<<--- imports para utilizar o carregador de modulos
-import {Negociacoes} from '../models/Negociacoes'
-
-
+import {View} from './View';  //<<--- imports para utilizar o carregador de modulos
+import {Negociacoes} from '../models/Negociacoes';
     
     export class NegociacoesView extends View <Negociacoes> { //<--classe filha passando o tipo <Negociacoes>
-
-        update(model: Negociacoes) {
-    
-            this._elemento.html(this.template(model));
-        }
-    
         
         template(model: Negociacoes): string {
     //--->String que é convertida para gerar o html, gerando as tabelas a cada objeto criado 

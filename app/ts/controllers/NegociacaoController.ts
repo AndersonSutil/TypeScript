@@ -22,7 +22,7 @@ export class NegociacaoController { //<--- Camada de Negócio
     constructor() {
         this._negociacoesView.update(this._negociacoes);       //<---Retiras os dados do contrutor, na utilização do domInject
     }
-    @throttle()
+    @throttle() //<--- Metodo Decorator que impede do user clicar sem parar e sobrecarregar o back
     adiciona(event: Event) {
 
        

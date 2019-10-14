@@ -1,6 +1,6 @@
 
-export function throttle(milissegundos = 500) {
-
+export function throttle(milissegundos = 500) { //<--- Método que faz com que o usuario espere meio segundo para obter sua requisição 
+                                                
     return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
 
         const metodoOriginal = descriptor.value;
@@ -8,7 +8,7 @@ export function throttle(milissegundos = 500) {
         let timer = 0;
 
         descriptor.value = function(...args: any[]) {
-            if(event) event.preventDefault();
+            if(event) event.preventDefault();  //<--- Vê se é um evento e passa ele d emodo implicido
             clearInterval(timer);
             timer = setTimeout(() => metodoOriginal.apply(this, args), milissegundos);
         }

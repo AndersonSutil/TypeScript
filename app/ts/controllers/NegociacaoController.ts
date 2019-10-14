@@ -1,10 +1,11 @@
 import { NegociacoesView, MensagemView } from '../views/index';  //<--- Imports sintaxe de módulos do ES2015 considera 
-import { Negociacao, Negociacoes } from '../models/index';  //             através das instruções import e export
-import { domInject } from '../helpers/decorators/index';                            
+import { Negociacao, Negociacoes, NegociacaoParcial } from '../models/index';  //             através das instruções import e export
+import { domInject } from '../helpers/decorators/index'; 
+
 
 
 export class NegociacaoController { //<--- Camada de Negócio 
-
+ 
     @domInject('#data')
     private _inputData: JQuery;
 
@@ -67,7 +68,7 @@ export class NegociacaoController { //<--- Camada de Negócio
             fetch('http://localhost:8080/dados')                //<---Retorna os Dados se tudo Ok
             .then(res => isOk (res))
             .then(res => res.json())
-            .then((dados:any [] ) => {
+            .then((dados:NegociacaoParcial [] ) => {//<--- NegiciacaoParcial de uma interface para validadar dados
                 dados.map(dado => new Negociacao(new Date(), dado.vezes , dado.montante)) //<--- Manda dados para uma nova negociação 
                     .forEach(Negociacao => this._negociacoes.adiciona(Negociacao))  //<--- Para cada negociação adiciona nova negociação na View update
                     this._negociacoesView.update(this._negociacoes); 

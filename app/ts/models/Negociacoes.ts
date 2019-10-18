@@ -1,16 +1,17 @@
 import { Negociacao } from './Negociacao';
-export class Negociacoes { //<--- Camadas de escrita e leitura de dados  e validações  
+import { Imprimivel } from './index'
+export class Negociacoes extends Imprimivel { //<--- Camadas de escrita e leitura de dados  e validações  
 
-    private _negociacoes: Negociacao [] = []; //<--- Retorna um array de negociacao feitas
+    private _negociacoes: Negociacao[] = []; //<--- Retorna um array de negociacao feitas
 
-    adiciona(negociacao:Negociacao):void{
+    adiciona(negociacao: Negociacao): void {
         this._negociacoes.push(negociacao);
 
     }
-    paraArray(): Negociacao[]{
+    paraArray(): Negociacao[] {
         return ([] as Negociacao[]).concat(this._negociacoes);  //<--- Com o Uso do StrictNullCheck Tem declarar o tipo do Array[]
     }
-    paraTexto(){
+    paraTexto():void {
         console.log('Imprime');
         console.log(JSON.stringify(this._negociacoes));
     }

@@ -42,12 +42,12 @@ export class NegociacaoController { //<--- Camada de Negócio
             parseInt(this._inputQuantidade.val()),
             parseFloat(this._inputValor.val())
         );
-        
+
         this._negociacoes.adiciona(negociacao);
         this._negociacoesView.update(this._negociacoes)
 
-        imprime(negociacao,this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils + paraTexto da classe Negociacao
-
+        imprime(negociacao, this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils + paraTexto da classe Negociacao
+                                                //<--- Só tipos imprimiveis são Aceitas Atraves de Polimorfismo
         this._mensagemView.update('Deu certo carai');
         //this._negociacoes.paraArray().forEach(negociacao =>{
         //  console.log(negociacao.data);                     //< ----  array com objetos para teste

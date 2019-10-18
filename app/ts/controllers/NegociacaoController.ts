@@ -2,6 +2,7 @@ import { NegociacoesView, MensagemView } from '../views/index';  //<--- Imports 
 import { Negociacao, Negociacoes, NegociacaoParcial } from '../models/index';  //             através das instruções import e export
 import { domInject, throttle } from '../helpers/decorators/index';
 import { negociacaoService } from '../services/index'
+import { imprime } from '../helpers/index'
 
 
 
@@ -41,11 +42,11 @@ export class NegociacaoController { //<--- Camada de Negócio
             parseInt(this._inputQuantidade.val()),
             parseFloat(this._inputValor.val())
         );
-
+        
         this._negociacoes.adiciona(negociacao);
         this._negociacoesView.update(this._negociacoes)
 
-        console.log(negociacao.data);  //<--- testando as saida no console do Browser
+        imprime(this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils
 
         this._mensagemView.update('Deu certo carai');
         //this._negociacoes.paraArray().forEach(negociacao =>{

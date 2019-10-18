@@ -7,5 +7,5 @@ export class Negociacao {  //<--- classe que recebe os valores da view e as trat
     get volume() {
 
         return this.quantidade * this.valor;
-    }
+    }   
 }

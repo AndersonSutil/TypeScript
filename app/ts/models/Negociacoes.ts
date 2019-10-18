@@ -10,5 +10,8 @@ export class Negociacoes { //<--- Camadas de escrita e leitura de dados  e valid
     paraArray(): Negociacao[]{
         return ([] as Negociacao[]).concat(this._negociacoes);  //<--- Com o Uso do StrictNullCheck Tem declarar o tipo do Array[]
     }
-
+    paraTexto(){
+        console.log('Imprime');
+        console.log(JSON.stringify(this._negociacoes));
+    }
 }

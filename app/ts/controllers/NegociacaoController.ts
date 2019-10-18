@@ -46,7 +46,7 @@ export class NegociacaoController { //<--- Camada de Negócio
         this._negociacoes.adiciona(negociacao);
         this._negociacoesView.update(this._negociacoes)
 
-        imprime(this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils
+        imprime(negociacao,this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils + paraTexto da classe Negociacao
 
         this._mensagemView.update('Deu certo carai');
         //this._negociacoes.paraArray().forEach(negociacao =>{

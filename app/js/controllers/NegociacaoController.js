@@ -44,7 +44,7 @@ System.register(["../views/index", "../models/index", "../helpers/decorators/ind
                     const negociacao = new index_2.Negociacao(data, parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
                     this._negociacoes.adiciona(negociacao);
                     this._negociacoesView.update(this._negociacoes);
-                    index_5.imprime(this._negociacoes);
+                    index_5.imprime(negociacao, this._negociacoes);
                     this._mensagemView.update('Deu certo carai');
                 }
                 _ehDiaUtil(data) {

@@ -2,7 +2,7 @@ import { NegociacaoParcial, Negociacao } from '../models/index';
 export class negociacaoService {
 
 
-  obterNegociacoes(handles: Function): Promise<Negociacao[]> {  //<--- Chamada encadeada then 
+  obterNegociacoes(handles: HandlesFunction): Promise<Negociacao[]> {  //<--- Chamada encadeada then 
 
     return fetch('http://localhost:8080/dados')                //<--- Método que Utiliza a Api 
       .then(res => handles(res))
@@ -13,4 +13,7 @@ export class negociacaoService {
       ).catch();
 
   }                      //<--- .catch(err => console.log(err)); 'não funciona' Ver isso depois 
+}
+export interface HandlesFunction{
+  (res:Response):Response
 }

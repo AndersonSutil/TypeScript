@@ -61,15 +61,16 @@ export class NegociacaoController { //<--- Camada de Negócio
     }
     @throttle()
     impotaDados() {
-        function isOk(res: Response) {      //<--- Função que trata os erros de requisição
-            if (res.ok) {
-                return res;
-            } else {
-                throw new Error(res.statusText);  //<--- Mensagem de erro tratada 
-            }
-        }
+        //<--- Função que trata os erros de requisição
+
         this._service                          //<--- Chamando a api da Service, e substituundo o método antigo
-            .obterNegociacoes(isOk)
+            .obterNegociacoes(res => {         //<--- Função de tratamento passada aqui com uma ArrowFunction  =>
+                if (res.ok) {
+                    return res;
+                } else {
+                    throw new Error(res.statusText);  //<--- Mensagem de erro tratada 
+                }
+            })
             .then(negociacoes => {
                 negociacoes.forEach(negociacao =>
                     this._negociacoes.adiciona(negociacao));

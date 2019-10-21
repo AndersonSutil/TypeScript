@@ -1,4 +1,4 @@
-import {View} from '../views/View';
+import {View} from './View';
     export class MensagemView extends View<string> {  //<--- classe filha // <string> type que e passado para a pai <T>
 
         update(model:string){

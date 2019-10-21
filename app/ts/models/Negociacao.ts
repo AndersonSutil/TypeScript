@@ -1,25 +1,27 @@
+import { MeuObjeto } from './MeuObjeto';
 
-export class Negociacao {  //<--- classe que recebe os valores da view e as trata e valida 
-    
-    constructor(private _data: Date, private _quantidade: number, private _valor: number) {}
+export class Negociacao implements MeuObjeto<Negociacao> {  //<--- classe que recebe os valores da view e as trata e valida 
 
-    get data() {
+    constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) { //<-- Utilização do Reandoly
 
-        return this._data;
-    }
-
-    get quantidade() {
-
-        return this._quantidade;
-    }
-
-    get valor() {
-
-        return this._valor;
-    }
+    }                                                                                      // para substituir o petodo Private
 
     get volume() {
 
-        return this._quantidade * this._valor;
+        return this.quantidade * this.valor;
+    }
+    paraTexto(): void {
+        console.log('Impressão');
+        console.log(
+            `Data: ${this.data}
+                Quantidade: ${this.quantidade}
+                Valor: ${this.valor}
+                Volume: ${this.volume} `
+        );
+    }
+    ehIgual(negociacao: Negociacao): boolean {
+        return this.data.getDay() == negociacao.data.getDay()
+            && this.data.getMonth() == negociacao.data.getMonth()
+            && this.data.getFullYear() == negociacao.data.getFullYear();
     }
 }

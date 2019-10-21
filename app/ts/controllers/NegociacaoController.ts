@@ -45,7 +45,7 @@ export class NegociacaoController { //<--- Camada de Negócio
         this._negociacoesView.update(this._negociacoes)
 
         imprime(negociacao, this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils + paraTexto da classe Negociacao
-                                                //<--- Só tipos imprimiveis são Aceitas Atraves de Polimorfismo
+        //<--- Só tipos imprimiveis são Aceitas Atraves de Polimorfismo
         this._mensagemView.update('Deu certo carai');
     }
     private _ehDiaUtil(data: Date) {
@@ -53,33 +53,34 @@ export class NegociacaoController { //<--- Camada de Negócio
         return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
     }
     @throttle()
-    impotaDados() {
+    async impotaDados() {    //<--- Utilização do método async/await ES2017 Possibilitando Fazer o codigo executar Assíncrono e utilizaçã do Try Catch
         //<--- Função que trata os erros de requisição
+        try {
+            const negociacoesParaImportar = await this._service                          //<--- Chamando a api da Service, e substituundo o método antigo
+                .obterNegociacoes(res => {         //<--- Função de tratamento passada aqui com uma ArrowFunction  =>
+                    if (res.ok) {
+                        return res;
+                    } else {
+                        throw new Error(res.statusText);  //<--- Mensagem de erro tratada 
+                    }
+                });
+            //<--- Utilizando o Metodo  ehIgual da interface Igualavel 
+            const negociacaoJaImportadas = this._negociacoes.paraArray();   // Testa se não possui Negociação Iguais 
 
-        this._service                          //<--- Chamando a api da Service, e substituundo o método antigo
-            .obterNegociacoes(res => {         //<--- Função de tratamento passada aqui com uma ArrowFunction  =>
-                if (res.ok) {
-                    return res;
-                } else {
-                    throw new Error(res.statusText);  //<--- Mensagem de erro tratada 
-                }
-            })
-            .then(negociacoesParaImportar => {                  //<--- Utilizando o Metodo  ehIgual da interface Igualavel 
-                const negociacaoJaImportadas = this._negociacoes.paraArray();   // Testa se não possui Negociação Iguais 
-
-                negociacoesParaImportar.filter(negociacao => !negociacaoJaImportadas
-                    .some(jaImportadas => negociacao
-                        .ehIgual(jaImportadas)))
+            negociacoesParaImportar.filter(negociacao => !negociacaoJaImportadas
+                .some(jaImportadas => negociacao
+                    .ehIgual(jaImportadas)))
                 .forEach(negociacao =>
                     this._negociacoes.adiciona(negociacao));
-                this._negociacoesView.update(this._negociacoes);
-            }).catch(err => {                              //<--- Exceção
-                this._mensagemView.update(err.message);   //<--- Utilizando O erro tratado para Informar o uzuario pelo metodo update
-            });
+            this._negociacoesView.update(this._negociacoes);
+
+
+        } catch (err) {
+            this._mensagemView.update(err.message); //<--- Utilizando O erro tratado para Informar o uzuario pelo metodo update
+        }
     }
+
 }
-
-
 enum DiaDaSemana {
 
     Domingo,

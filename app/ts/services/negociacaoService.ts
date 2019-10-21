@@ -10,13 +10,13 @@ export class negociacaoService {
       .then((dados: NegociacaoParcial[]) => //<--- NegiciacaoParcial de uma interface para validadar dados
         dados.map(dado => new Negociacao(new Date(), dado.vezes, dado.montante)) //<--- Manda dados para uma nova negociação 
 
-      ).catch(err =>{
+      ).catch(err => {
         console.log(err);
         throw new Error('!!! Não Foi Possivel Importar as Negociações !!!');  //<--- Tratando o Erro para exibição para Usuario
       });
 
-  }                      //<--- .catch(err => console.log(err)); 'não funciona' Ver isso depois 
+  }                      //<--- .catch(err => console.log(err)); 'não funciona' Ver isso depois *Resolvido* Utilizando o throw
 }
-export interface HandlesFunction{
-  (res:Response):Response
+export interface HandlesFunction {
+  (res: Response): Response
 }

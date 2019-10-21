@@ -1,5 +1,5 @@
 import { NegociacoesView, MensagemView } from '../views/index';  //<--- Imports sintaxe de módulos do ES2015 considera 
-import { Negociacao, Negociacoes, NegociacaoParcial } from '../models/index';  //             através das instruções import e export
+import { Negociacao, Negociacoes } from '../models/index';  //             através das instruções import e export
 import { domInject, throttle } from '../helpers/decorators/index';
 import { negociacaoService } from '../services/index'
 import { imprime } from '../helpers/index'

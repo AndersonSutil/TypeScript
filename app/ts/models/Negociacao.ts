@@ -1,7 +1,6 @@
-import { Imprimivel } from './index'
-import {Igualavel} from './Igualavel'
+import { MeuObjeto } from './MeuObjeto';
 
-export class Negociacao implements Imprimivel, Igualavel<Negociacao> {  //<--- classe que recebe os valores da view e as trata e valida 
+export class Negociacao implements MeuObjeto<Negociacao> {  //<--- classe que recebe os valores da view e as trata e valida 
 
     constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) { //<-- Utilização do Reandoly
         

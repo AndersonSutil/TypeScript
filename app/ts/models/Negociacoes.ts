@@ -1,6 +1,6 @@
 import { Negociacao } from './Negociacao';
-import { Imprimivel } from './index'
-export class Negociacoes implements Imprimivel { //<--- Camadas de escrita e leitura de dados  e validações  
+import { MeuObjeto } from './index'
+export class Negociacoes implements MeuObjeto<Negociacoes> { //<--- Camadas de escrita e leitura de dados  e validações  
 
     private _negociacoes: Negociacao[] = []; //<--- Retorna um array de negociacao feitas
 
@@ -14,5 +14,9 @@ export class Negociacoes implements Imprimivel { //<--- Camadas de escrita e lei
     paraTexto():void {
         console.log('Imprime');
         console.log(JSON.stringify(this._negociacoes));
+    }
+    ehIgual(negociacoes: Negociacoes): boolean {
+
+        return JSON.stringify(this._negociacoes) == JSON.stringify(negociacoes.paraArray());
     }
 }

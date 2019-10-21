@@ -53,7 +53,7 @@ System.register(["../views/index", "../models/index", "../helpers/decorators/ind
                     this._negociacoes.adiciona(negociacao);
                     this._negociacoesView.update(this._negociacoes);
                     index_5.imprime(negociacao, this._negociacoes);
-                    this._mensagemView.update('Deu certo carai');
+                    this._mensagemView.update('Negociação Adicionada com Sucesso ( ͡° ͜ʖ ͡°) ');
                 }
                 _ehDiaUtil(data) {
                     return data.getDay() != DiaDaSemana.Sabado && data.getDay() != DiaDaSemana.Domingo;
@@ -75,7 +75,7 @@ System.register(["../views/index", "../models/index", "../helpers/decorators/ind
                                 .some(jaImportadas => negociacao
                                 .ehIgual(jaImportadas)))
                                 .forEach(negociacao => this._negociacoes.adiciona(negociacao));
-                            this._negociacoesView.update(this._negociacoes);
+                            this._negociacoesView.update(this._negociacoes), this._mensagemView.update('Importado com Sucesso');
                         }
                         catch (err) {
                             this._mensagemView.update(err.message);

@@ -3,7 +3,7 @@ import { MeuObjeto } from './MeuObjeto';
 export class Negociacao implements MeuObjeto<Negociacao> {  //<--- classe que recebe os valores da view e as trata e valida 
 
     constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) { //<-- Utilização do Reandoly
-        
+
     }                                                                                      // para substituir o petodo Private
 
     get volume() {
@@ -19,9 +19,9 @@ export class Negociacao implements MeuObjeto<Negociacao> {  //<--- classe que re
                 Volume: ${this.volume} `
         );
     }
-    ehIgual(negociacao:Negociacao):boolean{
+    ehIgual(negociacao: Negociacao): boolean {
         return this.data.getDay() == negociacao.data.getDay()
-        && this.data.getMonth() == negociacao.data.getMonth()
-        && this.data.getFullYear() == negociacao.data.getFullYear();
+            && this.data.getMonth() == negociacao.data.getMonth()
+            && this.data.getFullYear() == negociacao.data.getFullYear();
     }
 }

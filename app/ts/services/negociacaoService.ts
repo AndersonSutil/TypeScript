@@ -9,7 +9,7 @@ export class negociacaoService {
       .then(res => res.json())
       .then((dados: NegociacaoParcial[]) => //<--- NegiciacaoParcial de uma interface para validadar dados
         dados.map(dado => new Negociacao(new Date(), dado.vezes, dado.montante)) //<--- Manda dados para uma nova negociação 
-
+      
       ).catch(err => {
         console.log(err);
         throw new Error('!!! Não Foi Possivel Importar as Negociações !!!');  //<--- Tratando o Erro para exibição para Usuario

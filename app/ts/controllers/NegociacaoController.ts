@@ -46,7 +46,7 @@ export class NegociacaoController { //<--- Camada de Negócio
 
         imprime(negociacao, this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils + paraTexto da classe Negociacao
         //<--- Só tipos imprimiveis são Aceitas Atraves de Polimorfismo
-        this._mensagemView.update('Deu certo carai');
+        this._mensagemView.update('Negociação Adicionada com Sucesso ( ͡° ͜ʖ ͡°) ');
     }
     private _ehDiaUtil(data: Date) {
 
@@ -66,20 +66,17 @@ export class NegociacaoController { //<--- Camada de Negócio
                 });
             //<--- Utilizando o Metodo  ehIgual da interface Igualavel 
             const negociacaoJaImportadas = this._negociacoes.paraArray();   // Testa se não possui Negociação Iguais 
-
             negociacoesParaImportar.filter(negociacao => !negociacaoJaImportadas
                 .some(jaImportadas => negociacao
                     .ehIgual(jaImportadas)))
                 .forEach(negociacao =>
                     this._negociacoes.adiciona(negociacao));
-            this._negociacoesView.update(this._negociacoes);
-
-
+            this._negociacoesView.update(this._negociacoes), this._mensagemView.update('Importado com Sucesso');
         } catch (err) {
             this._mensagemView.update(err.message); //<--- Utilizando O erro tratado para Informar o uzuario pelo metodo update
         }
-    }
 
+    }
 }
 enum DiaDaSemana {
 

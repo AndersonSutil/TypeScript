@@ -73,6 +73,8 @@ export class NegociacaoController { //<--- Camada de Negócio
                 .forEach(negociacao =>
                     this._negociacoes.adiciona(negociacao));
                 this._negociacoesView.update(this._negociacoes);
+            }).catch(err => {                              //<--- Exceção
+                this._mensagemView.update(err.message);   //<--- Utilizando O erro tratado para Informar o uzuario pelo metodo update
             });
     }
 }

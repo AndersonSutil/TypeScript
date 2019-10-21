@@ -1,17 +1,12 @@
-System.register(["./index"], function (exports_1, context_1) {
+System.register([], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var index_1, Negociacoes;
+    var Negociacoes;
     return {
-        setters: [
-            function (index_1_1) {
-                index_1 = index_1_1;
-            }
-        ],
+        setters: [],
         execute: function () {
-            Negociacoes = class Negociacoes extends index_1.Imprimivel {
+            Negociacoes = class Negociacoes {
                 constructor() {
-                    super(...arguments);
                     this._negociacoes = [];
                 }
                 adiciona(negociacao) {

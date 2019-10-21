@@ -1,6 +1,6 @@
 import { Negociacao } from './Negociacao';
 import { Imprimivel } from './index'
-export class Negociacoes extends Imprimivel { //<--- Camadas de escrita e leitura de dados  e validações  
+export class Negociacoes implements Imprimivel { //<--- Camadas de escrita e leitura de dados  e validações  
 
     private _negociacoes: Negociacao[] = []; //<--- Retorna um array de negociacao feitas
 

@@ -1,9 +1,9 @@
 import { Imprimivel } from './index'
 
-export class Negociacao extends Imprimivel {  //<--- classe que recebe os valores da view e as trata e valida 
+export class Negociacao implements Imprimivel {  //<--- classe que recebe os valores da view e as trata e valida 
 
     constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) { //<-- Utilização do Reandoly
-        super();
+        
     }                                                                                      // para substituir o petodo Private
 
     get volume() {

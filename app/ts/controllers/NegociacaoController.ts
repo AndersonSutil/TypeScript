@@ -4,8 +4,6 @@ import { domInject, throttle } from '../helpers/decorators/index';
 import { negociacaoService } from '../services/index'
 import { imprime } from '../helpers/index'
 
-
-
 export class NegociacaoController { //<--- Camada de Negócio 
 
     @domInject('#data')
@@ -49,12 +47,6 @@ export class NegociacaoController { //<--- Camada de Negócio
         imprime(negociacao, this._negociacoes); //<--- testando as saida no console do Browser Com a função Imprime da Utils + paraTexto da classe Negociacao
                                                 //<--- Só tipos imprimiveis são Aceitas Atraves de Polimorfismo
         this._mensagemView.update('Deu certo carai');
-        //this._negociacoes.paraArray().forEach(negociacao =>{
-        //  console.log(negociacao.data);                     //< ----  array com objetos para teste
-        //   console.log(negociacao.quantidade);
-        //  console.log(negociacao.valor);
-        //    console.log(negociacao.volume);
-        //  })
     }
     private _ehDiaUtil(data: Date) {
 
@@ -72,8 +64,13 @@ export class NegociacaoController { //<--- Camada de Negócio
                     throw new Error(res.statusText);  //<--- Mensagem de erro tratada 
                 }
             })
-            .then(negociacoes => {
-                negociacoes.forEach(negociacao =>
+            .then(negociacoesParaImportar => {                  //<--- Utilizando o Metodo  ehIgual da interface Igualavel 
+                const negociacaoJaImportadas = this._negociacoes.paraArray();   // Testa se não possui Negociação Iguais 
+
+                negociacoesParaImportar.filter(negociacao => !negociacaoJaImportadas
+                    .some(jaImportadas => negociacao
+                        .ehIgual(jaImportadas)))
+                .forEach(negociacao =>
                     this._negociacoes.adiciona(negociacao));
                 this._negociacoesView.update(this._negociacoes);
             });

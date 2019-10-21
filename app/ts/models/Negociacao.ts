@@ -1,6 +1,7 @@
 import { Imprimivel } from './index'
+import {Igualavel} from './Igualavel'
 
-export class Negociacao implements Imprimivel {  //<--- classe que recebe os valores da view e as trata e valida 
+export class Negociacao implements Imprimivel, Igualavel<Negociacao> {  //<--- classe que recebe os valores da view e as trata e valida 
 
     constructor(readonly data: Date, readonly quantidade: number, readonly valor: number) { //<-- Utilização do Reandoly
         
@@ -18,5 +19,10 @@ export class Negociacao implements Imprimivel {  //<--- classe que recebe os val
                 Valor: ${this.valor}
                 Volume: ${this.volume} `
         );
+    }
+    ehIgual(negociacao:Negociacao):boolean{
+        return this.data.getDay() == negociacao.data.getDay()
+        && this.data.getMonth() == negociacao.data.getMonth()
+        && this.data.getFullYear() == negociacao.data.getFullYear();
     }
 }
